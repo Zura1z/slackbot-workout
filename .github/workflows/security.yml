@@ -31,7 +31,7 @@ jobs:
         uses: github/codeql-action/init@main
         # Override language selection by uncommenting this and choosing your languages
         with:
-          languages: csharp
+          languages: python
           config-file: ./.github/workflows/security.yml
 
       # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
@@ -46,7 +46,5 @@ jobs:
       #    and modify them (or add more) to build your code if your project
       #    uses a compiled language
 
-      - run: |
-          dotnet build csharp
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@main
