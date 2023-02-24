@@ -6,6 +6,11 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      security-events: write
+      pull-requests: read
 
     steps:
     - name: Checkout code
