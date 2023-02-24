@@ -16,6 +16,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install CodeQL CLI
+        run: |
+          # Replace `12.0.2` with the version of the CodeQL CLI you want to install
+          curl -L https://github.com/github/codeql-cli-binaries/releases/download/v12.0.2/codeql-linux64.zip -o codeql.zip
+          unzip codeql.zip -d $HOME
+          echo "export PATH=$HOME/codeql:$PATH" >> $GITHUB_ENV
+
       - name: Setup CodeQL
         uses: github/codeql-action/init@v1
         with:
@@ -25,8 +32,7 @@ jobs:
           database-path: .
 
       - name: Run CodeQL analysis
-        run: |
-          codeql analyze --no-compile python
+        run: codeql analyze --no-compile python
 
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v1
